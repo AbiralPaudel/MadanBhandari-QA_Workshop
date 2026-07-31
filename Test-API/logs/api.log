@@ -1,0 +1,90 @@
+2026-08-01 00:13:29,575 | INFO    | test-api | GET /healthcheck -> 200 in 12.1ms
+2026-08-01 00:13:29,584 | INFO    | test-api | GET /version -> 200 in 4.7ms
+2026-08-01 00:13:29,592 | INFO    | test-api | GET /stats -> 200 in 5.5ms
+2026-08-01 00:13:29,599 | INFO    | test-api | GET /keys -> 200 in 3.5ms
+2026-08-01 00:13:29,605 | INFO    | test-api | GET /ranges -> 200 in 3.5ms
+2026-08-01 00:13:29,613 | INFO    | test-api | GET /matchscore -> 200 in 4.0ms
+2026-08-01 00:13:29,617 | INFO    | test-api | GET /error/418 -> 418 in 1.4ms
+2026-08-01 00:13:29,624 | INFO    | test-api | GET /buggy/echo -> 200 in 4.4ms
+2026-08-01 00:13:29,628 | INFO    | test-api | GET / -> 200 in 1.8ms
+2026-08-01 00:13:46,824 | INFO    | test-api | POST /keys -> 400 in 7.2ms
+2026-08-01 00:13:46,830 | INFO    | test-api | POST /keys -> 422 in 1.9ms
+2026-08-01 00:13:46,842 | INFO    | test-api | POST /keys -> 201 in 9.2ms
+2026-08-01 00:13:46,848 | INFO    | test-api | POST /keys -> 409 in 2.1ms
+2026-08-01 00:13:46,854 | INFO    | test-api | GET /keys/91234 -> 200 in 2.4ms
+2026-08-01 00:13:46,858 | INFO    | test-api | GET /keys/99999999 -> 404 in 1.8ms
+2026-08-01 00:13:46,876 | INFO    | test-api | POST /matchscore -> 201 in 14.9ms
+2026-08-01 00:13:46,887 | INFO    | test-api | POST /ranges -> 201 in 8.1ms
+2026-08-01 00:13:46,948 | INFO    | test-api | POST /admin/seed -> 201 in 57.6ms
+2026-08-01 00:13:46,964 | INFO    | test-api | POST /admin/reset -> 200 in 12.9ms
+2026-08-01 00:13:46,969 | ERROR   | test-api | GET /error/boom -> unhandled exception in 1.4ms
+Traceback (most recent call last):
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\main.py", line 54, in _log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\fastapi\routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "C:\Users\i37647\OneDrive - Verisk Analytics\Desktop\QA-Workshop\Test-API\routes\admin.py", line 81, in boom
+    raise RuntimeError("Boom! This is an intentionally unhandled server error.")
+RuntimeError: Boom! This is an intentionally unhandled server error.
+2026-08-01 00:22:36,824 | INFO    | test-api | GET / -> 200 in 2.8ms
+2026-08-01 00:22:43,757 | INFO    | test-api | GET /docs -> 200 in 0.5ms
+2026-08-01 00:25:31,789 | INFO    | test-api | GET /docs -> 200 in 0.6ms
+2026-08-01 00:25:32,902 | INFO    | test-api | GET /openapi.json -> 200 in 66.2ms
+2026-08-01 00:25:45,588 | INFO    | test-api | GET /keys -> 200 in 6.1ms
+2026-08-01 00:26:05,565 | INFO    | test-api | POST /buggy/keys -> 201 in 7.5ms
