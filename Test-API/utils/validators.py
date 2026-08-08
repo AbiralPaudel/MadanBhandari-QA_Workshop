@@ -46,6 +46,36 @@ def ensure_ids_are_new(store_name: str, ids: Iterable[int]) -> None:
         )
 
 
+def ensure_ids_are_new_or_identical(
+    store_name: str, records: List[Any], content_keys: Iterable[str]
+) -> None:
+    """Idempotent POST guard: allow re-posting an existing Id only when every
+    business field in `content_keys` matches the stored payload exactly; raise
+    409 when the Id exists with different content."""
+    keys = tuple(content_keys)
+    conflicts: list[dict] = []
+    for record in records:
+        stored = file_storage.get(store_name, record.Id)
+        if stored is None:
+            continue
+        mismatched: dict[str, dict] = {}
+        for key in keys:
+            new_value = getattr(record, key, None)
+            # Unwrap Enum members so their JSON value is compared, not the object.
+            new_value = getattr(new_value, "value", new_value)
+            stored_value = stored.get(key)
+            if stored_value != new_value:
+                mismatched[key] = {"stored": stored_value, "incoming": new_value}
+        if mismatched:
+            conflicts.append({"id": record.Id, "fields": mismatched})
+    if conflicts:
+        raise APIError(
+            f"Id(s) already stored for '{store_name}' with different content.",
+            status_code=status.HTTP_409_CONFLICT,
+            details={"conflicts": conflicts},
+        )
+
+
 def ensure_string_length(field: str, value: str) -> None:
     if len(value) > MAX_STRING_LENGTH:
         raise APIError(

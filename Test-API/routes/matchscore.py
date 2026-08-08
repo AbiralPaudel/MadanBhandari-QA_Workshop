@@ -12,7 +12,7 @@ from utils import file_storage
 from utils.errors import APIError
 from utils.validators import (
     ensure_exists,
-    ensure_ids_are_new,
+    ensure_ids_are_new_or_identical,
     ensure_no_duplicate_content,
     ensure_non_empty,
     ensure_unique_ids,
@@ -45,7 +45,7 @@ def create_matchscore(records: List[MatchScoreRequest]) -> List[Dict[str, Any]]:
     ids = [record.Id for record in records]
     ensure_unique_ids(ids)
     ensure_no_duplicate_content(records, keys=("Data1", "Data2", "DataType"))
-    ensure_ids_are_new(_STORE, ids)
+    ensure_ids_are_new_or_identical(_STORE, records, content_keys=("Data1", "Data2", "DataType"))
 
     responses: List[Dict[str, Any]] = []
     for record in records:
